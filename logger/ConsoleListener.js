@@ -58,8 +58,10 @@ proto.log = function(level, message)
         seconds = '0' + seconds;
     }
     generatedMessage = '[' + year + '/' + month + '/' + day + ' ' + hours + ':' + minutes + ':' + seconds + ']';
+    generatedMessage += '[' + level.toUpperCase() + ']';
     generatedMessage += ' ' + message;
 
+    // Display the message
     console.log(generatedMessage);
 };
 
