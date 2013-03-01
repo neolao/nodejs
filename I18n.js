@@ -1,12 +1,12 @@
-var neolao  = require('./index.js'),
-    Locale  = require('./i18n/Locale.js');
+var neolao  = require('./index'),
+    Locale  = require('./i18n/Locale');
 
 
 
 /**
  * Internationalization
  *
- * @class       neolao.I18n
+ * @class       neolao/I18n
  */
 function klass()
 {
@@ -26,7 +26,7 @@ proto.defaultLocaleString = null;
 /**
  * The singleton instance
  *
- * @type    neolao.I18n
+ * @type    neolao/I18n
  */
 proto._instance = null;
 
@@ -45,7 +45,7 @@ proto._locales = null;
  */
 proto.toString = function()
 {
-    return '[neolao.I18n]';
+    return '[neolao/I18n]';
 };
 
 /**
@@ -71,7 +71,7 @@ proto._ = proto.getMessage; // Alias
 /**
  * Add a locale
  *
- * @param   neolao.i18n.Locale      locale      Locale instance
+ * @param   neolao/i18n/Locale      locale      Locale instance
  */
 proto.addLocale = function(locale)
 {
@@ -84,7 +84,7 @@ proto.addLocale = function(locale)
 /**
  * Get singleton instance
  *
- * @return  neolao.I18n     Singleton instance
+ * @return  neolao/I18n     Singleton instance
  */
 klass.getInstance = function()
 {

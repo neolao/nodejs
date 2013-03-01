@@ -1,7 +1,7 @@
 /**
  * Site request
  *
- * @class       neolao.site.Request
+ * @class       neolao/site/Request
  */
 module.exports = function()
 {
@@ -31,7 +31,7 @@ proto.action = null;
  */
 proto.toString = function()
 {
-    return '[neolao.site.Request]';
+    return '[neolao/site/Request]';
 };
 
 

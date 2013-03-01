@@ -1,15 +1,15 @@
-var neolao          = require('./index.js'),
+var neolao          = require('./index'),
     express         = require('express'),
     http            = require('http'),
     mustache        = require('hogan-express'),
-    Request         = require('./site/Request.js');
+    Request         = require('./site/Request');
 
 
 
 /**
  * Site
  *
- * @class       neolao.Site
+ * @class       neolao/Site
  */
 module.exports = function()
 {
@@ -68,7 +68,7 @@ proto._publicPath = null;
  */
 proto.toString = function()
 {
-    return '[neolao.Site]';
+    return '[neolao/Site]';
 };
 
 /**

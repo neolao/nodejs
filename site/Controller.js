@@ -1,7 +1,7 @@
 /**
  * Site controller
  *
- * @class       neolao.site.Controller
+ * @class       neolao/site/Controller
  */
 module.exports = function()
 {
@@ -24,13 +24,13 @@ proto.response = null;
  */
 proto.toString = function()
 {
-    return '[neolao.site.Controller]';
+    return '[neolao/site/Controller]';
 };
 
 /**
  * Dispatch
  *
- * @param   neolao.site.Request     request     Request instance
+ * @param   neolao/site/Request     request     Request instance
  */
 proto.dispatch = function(request)
 {
