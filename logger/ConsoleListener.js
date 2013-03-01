@@ -34,7 +34,7 @@ proto.log = function(level, message)
 {
     var date    = new Date(),
         year    = date.getFullYear(),
-        month   = date.getMonth(),
+        month   = date.getMonth() + 1,
         day     = date.getDate(),
         hours   = date.getHours(),
         minutes = date.getMinutes(),
