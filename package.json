@@ -10,5 +10,11 @@
     {
         "express"       : "3.x",
         "hogan-express" : "*"
-    }
+    },
+    "licenses": [
+        {
+            "type"  : "MPL-2.0",
+            "url"   : "http://mozilla.org/MPL/2.0/"
+        }
+    ]
 }
