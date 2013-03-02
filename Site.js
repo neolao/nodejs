@@ -13,6 +13,11 @@ var neolao          = require('./index'),
  */
 module.exports = function()
 {
+    // Initialize the properties
+    this._controllerHelpers = [];
+    this._viewHelpers = [];
+
+    // Initialize Express
     this._express = express();
 };
 proto = module.exports.prototype;
@@ -60,6 +65,21 @@ proto._viewsPath = null;
  * @type    String
  */
 proto._publicPath = null;
+
+/**
+ * Controller helpers
+ *
+ * @type    Array
+ */
+proto._controllerHelpers = null;
+
+/**
+ * View helpers
+ *
+ * @type    Array
+ */
+proto._viewHelpers = null;
+
 
 /**
  * Get the representation string
@@ -201,6 +221,28 @@ proto.configureRoutes = function(routes)
         routeHandler(route);
     }
 };
+
+/**
+ * Add a controller helper
+ *
+ * @param   neolao/site/helper/controller/AbstractHelper    helper      Helper instance
+ */
+proto.addControllerHelper = function(helper)
+{
+    this._controllerHelpers.push(helper);
+};
+
+/**
+ * Add a view helper
+ *
+ * @param   neolao/site/helper/view/AbstractHelper          helper      Helper instance
+ */
+proto.addViewHelper = function(helper)
+{
+    this._viewHelpers.push(helper);
+};
+
+
 
 /**
  * Run the site
