@@ -14,8 +14,8 @@ var neolao          = require('./index'),
 module.exports = function()
 {
     // Initialize the properties
-    this._controllerHelpers = [];
-    this._viewHelpers = [];
+    this._controllerHelpers = {};
+    this._viewHelpers = {};
 
     // Initialize Express
     this._express = express();
@@ -69,14 +69,14 @@ proto._publicPath = null;
 /**
  * Controller helpers
  *
- * @type    Array
+ * @type    Object
  */
 proto._controllerHelpers = null;
 
 /**
  * View helpers
  *
- * @type    Array
+ * @type    Object
  */
 proto._viewHelpers = null;
 
@@ -184,6 +184,7 @@ Object.defineProperty(proto, 'publicPath',
  * Configure the routes
  *
  * @param   Object      routes      Routes configuration
+ * @todo Do it better
  */
 proto.configureRoutes = function(routes)
 {
@@ -206,13 +207,18 @@ proto.configureRoutes = function(routes)
 
         self._express.get(routePath, function(serverRequest, serverResponse)
         {
-            var ControllerClass = require(self._controllersPath+'/'+routeController),
+            var ControllerClass = require(self._controllersPath + '/' + routeController),
                 controller      = new ControllerClass(),
                 request         = new Request();
 
             request.serverRequest   = serverRequest;
             request.action          = routeAction;
             controller.response     = serverResponse;
+
+            // Add controller helpers
+            self._addControllerHelpers(controller);
+
+            // Dispatch the request into the controller
             controller.dispatch(request);
         });
     };
@@ -225,21 +231,23 @@ proto.configureRoutes = function(routes)
 /**
  * Add a controller helper
  *
+ * @param   String                                          key         Helper key
  * @param   neolao/site/helper/controller/AbstractHelper    helper      Helper instance
  */
-proto.addControllerHelper = function(helper)
+proto.addControllerHelper = function(key, helper)
 {
-    this._controllerHelpers.push(helper);
+    this._controllerHelpers[key] = helper;
 };
 
 /**
  * Add a view helper
  *
+ * @param   String                                          key         Helper key
  * @param   neolao/site/helper/view/AbstractHelper          helper      Helper instance
  */
-proto.addViewHelper = function(helper)
+proto.addViewHelper = function(key, helper)
 {
-    this._viewHelpers.push(helper);
+    this._viewHelpers[key] = helper;
 };
 
 
@@ -280,4 +288,19 @@ proto.run = function()
 
 };
 
+/**
+ * Add controller helpers
+ *
+ * @param   neolao/site/Controller      controller      Controller instance
+ */
+proto._addControllerHelpers = function(controller)
+{
+    var key, helper;
+
+    // Add custom helpers
+    for (key in this._controllerHelpers) {
+        helper = this._controllerHelpers[key];
+        controller.registerHelper(key, helper);
+    }
+};
 
